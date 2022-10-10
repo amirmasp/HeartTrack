@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+  
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!--Import materialize.css-->
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!--Import font-awesome.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+    <!--Import Bootstrap 4  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+	<!-- Import jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+    </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+
+    <link href="./stylesheets/login&register.css" rel="stylesheet">
+    <script src="./javascripts/login.js"></script>
+
+    <link rel="shortcut icon" type="image/png" href="../images/heartbeatLogo.png">
+	<!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Login with Google -->
+    <meta name="google-signin-client_id" content="766866786578-3mt9tju7e30v01ckq38fc8vftbj3c2c9.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <title>HeartTrack - Log In</title>
+</head>
+
+<body>
+    <nav class="nav-wrapper bg-black lighten-4" role="navigation">
+        <div class="nav-wrapper bg-black lighten-4 container">
+            <a  href="../index.html" class="left brand-logo valign-wrapper"><img id="logo" src="../images/heartbeatLogo.png">  HeartTrack</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="../index.html"><i class="fas fa-home">&ensp;</i>Home</a></li> 
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav right" id="mobile-demo">
+        <li><a href="../index.html"><i class="fas fa-home"></i>Home</a></li> 
+    </ul>
+    
+    <div class="modal-dialog text-center">
+        <div class="col-sm-9 main-section">
+        <div class="modal-content">
+            <div class="col-12 user-img">
+                <i class="fas fa-user"></i>
+                <h4>Account Login</h4>
+            </div>
+
+            <!-- Select type of User -->
+            <div id="define-user-type">
+                <div>
+                    <input type="radio" id="patient" name="user-type" value="patient" checked>
+                    <label for="patient">Patient</label>
+                </div>
+                <div>
+                    <input type="radio" id="physician" name="user-type" value="physician">
+                    <label for="physician">Physician</label>
+                </div>
+            </div>
+            <!-- Select type of User -->
+
+            <div class="col-12">
+                <div class="input-field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="input-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                
+
+                <div class="card-action">
+                    <div>
+                        <button id="login" class="waves-effect waves-light blue btn">Login</button>
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    </div>
+                    
+                    <div id="account">Don't have an account? <a href="register.html">Register</a></div>
+                    <!-- Physician -->
+                    <div>Register a Physician Account ? <a href="physicianRegister.html">Be a Physician</a></div>
+                </div>
+            </div>
+            <div id="ServerResponse" style="display: none"></div>
+        </div>
+        </div>
+  </div>
+
+  <script>
+    $(document).ready(function(){
+       $('.sidenav').sidenav({edge:'right'});
+    });
+    </script>
+
+<script>
+    function onSignIn(googleUser){
+        let profile = googleUser.getBasicProfile();
+        let id = profile.getId();
+        let userName = profile.getName();
+        let userEmail = profile.getEmail();
+
+        googleSignIn(id, userName, userEmail);
+        // console.log(profile.getEmail());
+    }
+
+    function onLoad(){
+      gapi.load('auth2', function(){gapi.auth2.init()});
+    }
+  </script>
+  <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+</body>
+</html>

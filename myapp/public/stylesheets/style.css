@@ -1,0 +1,209 @@
+body{
+  font-family: "Times New Roman", Times, serif;
+}
+
+#heartbeat-background{
+  background-image: url("https://i.stack.imgur.com/YlsJf.gif");
+  width: 100%;
+  height: 350px;
+  background-repeat: no-repeat;
+  background-position: center; /* Center the image */
+  background-size: 70% 180%;
+  position: absolute;
+  background-color: rgb(29, 24, 24);
+}
+
+.nav-wrapper {
+    color: white;
+    height: 70px;
+    background-color: rgb(13, 36, 75);
+}
+
+#logo {
+    height: 50px;
+    vertical-align: middle;
+}
+
+
+#projectTitle{
+  padding-top: 5px;
+  text-align: center;
+  font-size: 4em;
+  color: white;
+  font-weight: bold;
+  line-height: 80px;
+  background-color: rgb(29, 24, 24);
+}
+
+#headerSection{
+  height: 350px;
+}
+
+#LoginButton, .featuresDescriptions{
+  text-align: center;
+}
+
+.imagePlaceholder i{
+  font-size: 48pt;
+}
+
+#appAbout{
+  margin-bottom: 30px;
+  margin-top: 60px;
+}
+
+#appAbout-cols, #team-cols{
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.imagePlaceholder{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.appAbout-flexItems{
+  width: 27%;
+  margin: 0px 10px;
+  padding: 10px;
+  position: relative;
+}
+
+/* .appAbout-flexItems:hover{
+  background-color: rgb(247, 247, 247);
+} */
+
+.appFeatures {
+  margin: 0px;
+  font-size: 18pt;
+  font-family: monospace;
+  text-align: center;
+  font-weight: bold;
+}
+
+.featuresDescriptions{
+  word-wrap: break-word;
+  font-size: 14pt;
+}
+
+#Team{
+  background-color: rgb(247, 247, 247);
+  /* height: 50vh; */
+}
+
+#teamHeader{
+  background-color: rgb(247, 247, 247);
+  font-size: 20pt;
+  text-align: center;
+  padding: 20px 0px;
+  /* margin: 20px 0px 50px; */
+}
+
+.teamMembersPhoto{
+  width: 50%;
+  border-radius: 500rem;
+}
+
+.teamMembers{
+  width: 33%;
+  text-align: center;
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+.teamMembersEmail{
+  padding-bottom: 30px;
+}
+
+.teamMembersEmail i{
+  font-size: 12pt;
+}
+
+.page-footer{
+  background-color: rgb(169, 11, 37);
+}
+
+
+
+
+/* 1200px width break point */
+@media screen and (max-width: 1200px){
+
+  #teamHeader, .appFeatures{
+    font-size: 16pt;
+  }
+  .featuresDescriptions,  .teamMembersName{
+    font-size: 13pt;
+  }
+
+  .imagePlaceholder i{
+    font-size: 36pt;
+  }
+
+ .teamMembersEmail, .teamMembersEmail i{
+    font-size: 12pt;
+  }
+  
+}
+
+/* 900px width break point */
+@media screen and (max-width: 900px){
+  .appFeatures{
+    font-size: 14pt;
+  }
+
+  .imagePlaceholder i{
+    font-size: 24pt;
+  }
+
+  .featuresDescriptions{
+    font-size: 11pt;
+  }
+
+  #heartbeat-background{
+    background-size: 100%;
+  }
+
+}
+
+
+/* 650px width break point */
+@media screen and (max-width: 650px){
+
+  #appAbout-cols, #team-cols{
+    display: block;
+    flex-direction: column;
+  }
+
+  .appAbout-flexItems{
+    width: 75vw;
+    margin: auto;
+  }
+
+  .appFeatures{
+    font-size: 16pt;
+    margin-top: 5px;
+  }
+
+  .featuresDescriptions{
+    font-size: 13pt;
+  }
+
+  .imagePlaceholder i{
+    font-size: 40pt;
+  }
+
+  #projectTitle{
+    font-size: 36pt;
+  }
+  
+  .teamMembersEmail{
+    padding-bottom: 30px;
+  }
+
+  .teamMembers{
+    width: 90vw;
+    margin: auto;
+  }
+}

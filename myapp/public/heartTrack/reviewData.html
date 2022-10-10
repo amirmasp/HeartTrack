@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>HeartTrack - Account</title>
+
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+	<!--Import font-awesome.css-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+	
+	<!-- Import jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+	
+	<link href="./stylesheets/reviewData.css" rel="stylesheet">
+	<script src="./javascripts/reviewData.js"></script>
+	<script src="./javascripts/signout.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+	<link rel="shortcut icon" type="image/png" href="../images/heartbeatLogo.png">
+	
+	<!-- jQuery UI Date Picker -->
+	<link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css' rel='stylesheet'> 
+	<script src= "https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" ></script>
+	<!-- jQury Time Picker -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+	<!-- Moment -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+
+	<meta name="google-signin-client_id" content="766866786578-3mt9tju7e30v01ckq38fc8vftbj3c2c9.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body>
+    <!-- Dropdown Structure -->
+    <!-- <ul id='dropdown1' class='dropdown-content'>
+		<li><a href="account.html">Home</a></li>
+		<li class="divider"></li>
+		<li><a href="#" id="signout">Sign out</a></li>
+        <li class="divider"></li>
+    
+	</ul>
+	<nav>
+		<div class="nav-wrapper bg-black lighten-4">
+			<a href="../index.html" class="brand-logo left"><img id="logo" src="../images/heartbeatLogo.png"><span id="name">HeartTrack</span></a>
+			<ul class="right ">
+	      <li><a class='dropdown-trigger btn' href='#' data-target='dropdown1'><i class="material-icons">more_vert</i></a></li>
+			</ul>
+		</div>
+	</nav> -->
+    <nav class="nav-wrapper bg-black lighten-4" role="navigation">
+		<div id="fix-nav-size">
+			<div class="nav-wrapper bg-black lighten-4">
+				<a id="logo-container" href="../index.html" class="left brand-logo valign-wrapper"><img id="logo" src="../images/heartbeatLogo.png">  HeartTrack</a>
+				<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="account.html"><i class="fas fa-home">&ensp;</i>Account</a></li> 
+					<li><a href="#" class="signout"><i class="fas fa-sign-out-alt">&ensp;</i>Sign Out</a></li> 
+				
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<!-- sidenav for mobile -->
+	<ul class="sidenav right" id="mobile-demo">
+		<li><a href="account.html"><i class="fas fa-home">&ensp;</i>Account</a></li>
+		<li><a href="#" class="signout"><i class="fas fa-sign-out-alt">&ensp;</i>Sign Out</a></li>  
+	</ul>
+
+	<div class="row" id="main">
+		<div>
+
+            <ul class="collection with-header" id="devices">
+				<li class="collection-header">
+					<h4>Your Devices    <i class="fas fa-microchip"></i></h4>
+				</li>
+				<div id="deviceList"></div>
+			</ul>
+
+            <div class='red-text text-darken-2' id="error"></div>
+
+			<ul class="collection with-header" id="argondata">
+				<li class="collection-header">
+                    <div>
+                        <h4>User Data   <i class="fas fa-sync-alt" id="refresh_icon">   Refresh</i></h4>
+                        <!-- <i class="fas fa-sync-alt" id="refresh_icon">   Refresh</i> -->
+                    </div>
+                    
+				</li>
+				<li class="collection-item" style="font-weight:bold;" id="deviceId-li">
+					Device Id: &emsp;<span id="datasheet-DeviceId"></span>
+				</li>
+
+				<!-- Update Frequency and time -->
+				<li class="collection-item" id="changeDeviceSettingSection">
+					<b><i class="fas fa-microchip"></i> Update Device Settings: &emsp;
+						<span id="updatedMsg"></span>
+					</b>
+
+					<div id="changeDeviceSettingSubSection">
+						<div id="changeFreqSection">
+							<span>Change Frequency of Measurement:</span>
+							<select class="browser-default custom-select" id="selectFreq">
+								<option class="frequency" value="5">5 mins</option>
+								<option class="frequency" value="10">10 mins</option>
+								<option class="frequency" value="15">15 mins</option>
+								<option class="frequency" value="30" selected>30 mins</option>
+								<option class="frequency" value="60">1 hour</option>
+							</select>
+						</div>
+						<div id="changeTimeStartSection">
+							<span>Starting Time:</span>
+							<select class="browser-default custom-select" id="selectTimeRangeStart">
+								<option class="changetimeStart" value="6" selected>6:00 AM</option>
+								<option class="changetimeStart" value="7">7:00 AM</option>
+								<option class="changetimeStart" value="8">8:00 AM</option>
+								<option class="changetimeStart" value="9">9:00 AM</option>
+								<option class="changetimeStart" value="10">10:00 AM</option>
+								<option class="changetimeStart" value="11">11:00 AM</option>
+								<option class="changetimeStart" value="12">12:00 PM</option>
+								<option class="changetimeStart" value="13">1:00 PM</option>
+								<option class="changetimeStart" value="14">2:00 PM</option>
+								<option class="changetimeStart" value="15">3:00 PM</option>
+								<option class="changetimeStart" value="16">4:00 PM</option>
+								<option class="changetimeStart" value="17">5:00 PM</option>
+								<option class="changetimeStart" value="18">6:00 PM</option>
+								<option class="changetimeStart" value="19">7:00 PM</option>
+								<option class="changetimeStart" value="20">8:00 PM</option>
+								<option class="changetimeStart" value="21">9:00 PM</option>
+								<option class="changetimeStart" value="22">10:00 PM</option>
+							</select>
+						</div>
+						<div id="changeTimeEndSection">
+							<span>End Time:</span>
+							<select class="browser-default custom-select" id="selectTimeRangeEnd">
+								<option class="changetimeEnd" value="6">6:00 AM</option>
+								<option class="changetimeEnd" value="7">7:00 AM</option>
+								<option class="changetimeEnd" value="8">8:00 AM</option>
+								<option class="changetimeEnd" value="9">9:00 AM</option>
+								<option class="changetimeEnd" value="10">10:00 AM</option>
+								<option class="changetimeEnd" value="11">11:00 AM</option>
+								<option class="changetimeEnd" value="12">12:00 PM</option>
+								<option class="changetimeEnd" value="13">1:00 PM</option>
+								<option class="changetimeEnd" value="14">2:00 PM</option>
+								<option class="changetimeEnd" value="15">3:00 PM</option>
+								<option class="changetimeEnd" value="16">4:00 PM</option>
+								<option class="changetimeEnd" value="17">5:00 PM</option>
+								<option class="changetimeEnd" value="18">6:00 PM</option>
+								<option class="changetimeEnd" value="19">7:00 PM</option>
+								<option class="changetimeEnd" value="20">8:00 PM</option>
+								<option class="changetimeEnd" value="21">9:00 PM</option>
+								<option class="changetimeEnd" value="22" selected>10:00 PM</option>
+							</select>
+						</div>
+					</div>
+				</li>
+
+				<!-- Weekly Summary View -->
+				<li class="collection-item summaryPlots">
+					<div class="plotSections" id="weeklyPlostSection">
+						<h5>Weekly Summary (HeartRate)</h5>
+                        <canvas id="weeklyPlot"></canvas>
+                        <p id="no-data-in-7days"></p>
+                        <!-- <img src="./images/dataNotAvailable.jpg" class="data-not-available" alt="Data-Not-Available" > -->
+					</div>
+				</li>
+
+                <!-- Daily Summary View -->
+				<li class="collection-item summaryPlots">
+					<div class="plotSections" id="dailyPlostSection">
+						<h5>Daily Summary</h5>&emsp;
+						<div class="date-picker">
+							<label for="my_date_picker">Date:     </label>
+							<input type="text" id="my_date_picker">
+						</div>
+						<div id="daily_datepicker_inline">
+							<!-- <div class="date-time-picker">
+								<label for="my_date_picker">Date:     </label>
+								<input type="text" id="my_date_picker">
+							</div> -->
+							<div class="date-time-picker">
+								<label for="dailyStartTime">Start:     </label>
+								<input type="text" class="timepicker" name="starttimepicker" placeholder="Start" id="dailyStartTime">
+							</div>
+							<div class="date-time-picker">
+								<label for="dailyEndTime">End:    </label>
+								<input type="text" class="timepicker" name="endtimepicker" placeholder="End" id="dailyEndTime">
+							</div>
+						</div>
+                        <p class="no-data-in-select-time-range"></p>
+						<div id="dailyPlotSeparate">
+							<div id="dailyPlot_bpm_section">
+								<h6 class="daily-plots-title">Heart Rate (BPM)</h6>
+                                <canvas id="dailyPlot_bpm"></canvas>
+                                <!-- <p class="no-data-in-select-time-range"></p> -->
+                                <!-- <img src="./images/dataNotAvailable.jpg" class="data-not-available" alt="Data-Not-Available" > -->
+							</div>
+							<div id="dailyPlot_satOxygen_section">
+								<h6 class="daily-plots-title">Blood Oxygen Saturation Level</h6>
+                                <canvas id="dailyPlot_satOxygen"></canvas>
+                                <!-- <p class="no-data-in-select-time-range"></p> -->
+                                <!-- <img src="./images/dataNotAvailable.jpg" class="data-not-available" alt="Data-Not-Available" > -->
+							</div>
+                        </div>
+                        
+					</div>
+                </li>
+                
+                <!-- All Data Table -->
+                <li class="collection-item" id="table-section">
+                    <h5>All Data</h5>
+                    <div id="noAllDataMsg"></div>
+                    <table class="collection-header" id="allDataTable">
+                        <tr id="allDataTable-header">
+                            <th>BPM</th>
+                            <th>SPO2</th>
+                            <th>Reading Time</th>
+                        </tr>
+
+                        <table class="collection-header" id="ReadingTable">
+                        </table>
+                    </table> 
+                </li>
+                <!-- <li class="collection-item noData" id="noAllDataMsg"></li> -->
+			</ul>
+			
+
+		</div>
+	</div>
+
+	<!-- <button id="debug">debug</button> -->
+  </body>
+
+  <!-- Initialize dropdown menu in materialize -->
+  <script>
+    $(document).ready(function(){
+      $('.sidenav').sidenav({edge:'right'});
+   });
+  </script>
+
+<script>
+    function onLoad(){
+      gapi.load('auth2', function(){gapi.auth2.init()});
+    }
+  </script>
+  <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+</html>

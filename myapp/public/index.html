@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!--Import materialize.css-->
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!--Import font-awesome.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+	<!-- Import jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+	</script>
+
+    <link href="stylesheets/style.css" rel="stylesheet">
+
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" type="image/png" href="images/heartbeatLogo.png">
+	<title>ECE 513 - Fall 2020: HeartTrack Project</title>
+</head>
+
+<body>
+    <nav class="nav-wrapper bg-black lighten-4" role="navigation">
+		<div class="nav-wrapper container">
+         <a id="logo-container" href="index.html" class="left brand-logo valign-wrapper"><img id="logo" src="images/heartbeatLogo.png">  HeartTrack</a>
+         <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+         <ul class="right hide-on-med-and-down">
+            <li><a href="index.html"><i class="fas fa-home">&ensp;</i>Home</a></li> 
+            <li><a href="./heartTrack/login.html"><i class="fas fa-sign-in-alt">&ensp;</i>Login</a></li> 
+         </ul>
+      </div>
+    </nav>
+
+   <ul class="sidenav right" id="mobile-demo">
+	   <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li> 
+     <li><a href="./heartTrack/login.html"><i class="fas fa-sign-in-alt"></i>Login</a></li> 
+   </ul>
+
+  <section id="headerSection">
+    <div id="projectTitle">HeartTrack</div>
+    <div id="heartbeat-background"></div>
+  </section> 
+
+  <div id="LoginButton">
+    <a href="./heartTrack/login.html" id="LoginPageButton" class="waves-effect waves-light btn">
+      <i class="fas fa-sign-in-alt"></i>
+      Go to the App
+    </a>
+  </div>
+
+  <section id="appAbout">
+    <div id="appAbout-cols">
+      <div class="appAbout-flexItems">
+        <div class="imagePlaceholder"><i class="fas fa-heartbeat"></i></div>
+        <p class="appFeatures">Measurement</p>
+        <p class="featuresDescriptions">Track & Collect your heart rate and blood oxygen saturation level measurements using a heart rate and oxygen sensor.</p>
+      </div>
+      <div class="appAbout-flexItems">
+        <div class="imagePlaceholder"><i class="far fa-chart-bar"></i></div>
+        <p class="appFeatures">Summary & Monitor</p>
+        <p class="featuresDescriptions">The IoT device will transmit measurements to a web application through which users can view their data. Supports a weekly summary view and detailed day view.</p>
+      </div>
+      <div class="appAbout-flexItems">
+        <div class="imagePlaceholder"><i class="fas fa-user-shield"></i><i class="fas fa-database"></i></div>
+        <p class="appFeatures">Security</p>
+        <p class="featuresDescriptions">Users can create/update an account and register their devices easily. All data will be encrypted and stored in a database to ensure that user accounts are protected and properly secured.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <div id="teamHeader">Team</div>
+  <section id="Team">
+    <!-- <div id="teamHeader">Team</div> -->
+    <div id="team-cols">
+      <div class="teamMembers">
+        <div class="teamMembers-photo">
+          <img class="teamMembersPhoto" src="images/Ibrahim_Almazyad.png" alt="Ibrahim-Almazyad">
+        </div>
+        <div class="teamMembersName">Ibrahim Almazyad</div>
+        <div class="teamMembersEmail">
+          <i class="far fa-envelope">&ensp;</i>
+          <a href="mailto:almazyad@email.arizona.edu">almazyad@email.arizona.edu</a>
+        </div>
+      </div>
+      <div class="teamMembers">
+        <div class="teamMembers-photo">
+          <img class="teamMembersPhoto" src="images/amir.jpg" alt="Amir-Mohammad-Asdagh-Pour">
+        </div>
+        <div class="teamMembersName">Amir Asdagh Pour</div>
+        <div class="teamMembersEmail">
+          <i class="far fa-envelope">&ensp;</i>
+          <a href="mailto:asdaghpour@email.arizona.edu">asdaghpour@email.arizona.edu</a>
+        </div>
+      </div>
+      <div class="teamMembers">
+        <div class="teamMembers-photo">
+          <img class="teamMembersPhoto" src="images/photo.jpg" alt="VincentXu">
+        </div>
+        <div class="teamMembersName">Vincent Xu</div>
+        <div class="teamMembersEmail">
+          <i class="far fa-envelope">&ensp;</i>
+          <a href="mailto:rongxinxu@email.arizona.edu">rongxinxu@email.arizona.edu</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  
+	<footer class="page-footer">
+    <div class="footer-copyright">
+      <div class="container">
+        Copyright &copy; 2020, Ibrahim Almazyad, Amir Mohammad Asdagh Pour, Vincent Xu
+        <span class="grey-text text-lighten-4 right">Electrical and Computer Engineering, University of Arizona</a>
+      </div>
+    </div>
+  </footer>
+
+   <script>
+   $(document).ready(function(){
+      $('.sidenav').sidenav({edge:'right'});
+   });
+   </script>
+</body>
+</html>

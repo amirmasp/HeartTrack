@@ -1,0 +1,99 @@
+body{
+    background: url("../images/loginBackground.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.nav-wrapper {
+    color: white;
+    height: 65px;
+    background-color: rgb(13, 36, 75);
+}
+  
+#logo {
+    margin-left: 10px;
+    height: 50px;
+    vertical-align: middle;
+}
+
+.main-section{
+    margin: 0 auto;
+    margin-top: 200px;
+    padding: 0;
+}
+
+.modal-content {
+    background-color: #e6eff8;
+    opacity: 0.8;
+    padding: 0 18px;
+    border-radius: 20px;
+}
+
+.user-img i{
+    height: 120px;
+    font-size: 64pt;;
+}
+
+.user-img{
+    margin-top: -45px;
+    margin-bottom: 15px;
+}
+
+.input-field{
+    margin-bottom: 15px;
+    display: flex;
+  justify-content: center;
+}
+
+.card-action > div{
+    padding: 10px 0;
+}
+
+#passwordVerifictionErrors{
+    list-style-type: circle;
+    display: none;
+    font-size: 8pt;
+    font-weight: normal;
+    color: red;
+    text-align: left;
+}
+
+.password-passed, .confirmPassword-passed, .email-passed {
+    color: green;
+    font-size: 12pt;
+    display: none;
+}
+
+.password-failed, .confirmPassword-failed, .email-failed {
+    color: red;
+    font-size: 12pt;
+    display: none;
+}
+
+
+/*          For Physician        */
+
+input[type="radio"]{
+    opacity: 1 !important;
+    position: relative !important;
+    pointer-events: unset !important;
+}
+
+
+#define-user-type label{
+    font-size: 12pt;
+    color: black;
+}
+
+#define-user-type{
+    display: flex;
+}
+
+#define-user-type div{
+    width: 47%;
+}
+
+/* Google Login button */
+.g-signin2 {
+    padding-left: 20px;
+    display: inline-flex;
+}

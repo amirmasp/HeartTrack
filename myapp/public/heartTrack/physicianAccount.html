@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>HeartTrack - Physician Account</title>
+
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+	<!--Import font-awesome.css-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+	
+	<!-- Import jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+	
+	<link href="./stylesheets/physicianAccount.css" rel="stylesheet">
+	<script src="./javascripts/physicianAccount.js"></script>
+	<script src="./javascripts/signout.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+	<link rel="shortcut icon" type="image/png" href="../images/heartbeatLogo.png">
+	
+	<!-- jQuery UI Date Picker -->
+	<link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css' rel='stylesheet'> 
+	<script src= "https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" ></script>
+	<!-- jQury Time Picker -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+	<!-- Moment -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+
+	<meta name="google-signin-client_id" content="766866786578-3mt9tju7e30v01ckq38fc8vftbj3c2c9.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body>
+
+	<nav class="nav-wrapper bg-black lighten-4" role="navigation">
+		<div id="fix-nav-size">
+			<div class="nav-wrapper bg-black lighten-4">
+				<a id="logo-container" href="../index.html" class="left brand-logo valign-wrapper"><img id="logo" src="../images/heartbeatLogo.png">  HeartTrack</a>
+				<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="physicianAccount.html"><i class="fas fa-home">&ensp;</i>Account</a></li> 
+					<!-- <li><a href="./reviewData.html"><i class="fas fa-chart-area"></i>&ensp;</i>Review</a></li> -->
+					<li><a href="#" class="signout"><i class="fas fa-sign-out-alt">&ensp;</i>Sign Out</a></li> 
+				
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<!-- sidenav for mobile -->
+	<ul class="sidenav right" id="mobile-demo">
+		<li><a href="physicianAccount.html"><i class="fas fa-home">&ensp;</i>Account</a></li> 
+		<!-- <li><a href="./reviewData.html"><i class="fas fa-chart-area">&ensp;</i>Review</a></li> -->
+		<li><a href="#" class="signout"><i class="fas fa-sign-out-alt">&ensp;</i>Sign Out</a></li>  
+	</ul>
+
+	<div class="row" id="main">
+		<div>
+			<ul class="collection with-header">
+				<li class="collection-header">
+					<h4>Account details     <i class="fas fa-pen-square" id="updateAccInfoBtn"></i>
+						<span id="dataSavedMsg"></span></h4>
+				</li>
+				<li class="collection-item">Email: <span id="email"></span></li>
+                <li class="collection-item">Name: <span id="fullName"></span></li>
+                <li class="collection-item">Role: <span id="role">Physician</span></li>
+				<li class="collection-item">Last Access: <span id="lastAccess"></span></li>
+			</ul>
+
+
+            <ul class="collection with-header">
+				<li class="collection-header">
+					<h4>Patients</h4>
+				</li>
+				<div id="patientsList"></div>
+            </ul>
+            
+
+            <ul class="collection with-header" id="argondata">
+                <!-- <li class="collection-item">
+					<a href="#">Collapse</a>
+                </li> -->
+                <li class="collection-header">
+                    <div>
+                        <h4>Patients Data</h4>
+                        <!-- <i class="fas fa-sync-alt" id="refresh_icon">   Refresh</i> -->
+                    </div>
+                    
+				</li>
+
+                
+                <li class="collection-item" style="font-weight:bold;" id="patientsName-plot-li">
+					Patient: &emsp;<span id="patientName-plot-span"></span>
+				</li>
+
+				<li class="collection-item" id="updateUserDeviceSettingSection">
+					<b><i class="fas fa-microchip"></i> Update Patient's Device Settings: &emsp;
+					</b>
+					<div id="changeFreqSection">
+						<span>Change Frequency of Measurement:</span>
+						<select class="browser-default custom-select" id="selectFreq">
+							<option class="frequency" value="5">5 mins</option>
+							<option class="frequency" value="10">10 mins</option>
+							<option class="frequency" value="15">15 mins</option>
+							<option class="frequency" value="30" selected>30 mins</option>
+							<option class="frequency" value="60">1 hour</option>
+						</select>
+					</div>
+					&emsp;&emsp;<div id="updatedMsg"></div>
+				</li>
+
+
+                <!-- Weekly Summary View -->
+				<li class="collection-item summaryPlots">
+					<div class="plotSections" id="weeklyPlostSection">
+						<h5>Weekly Summary (HeartRate)</h5>
+                        <canvas id="weeklyPlot"></canvas>
+                        <p id="no-data-in-7days">No Data In The Past 7 Days!</p>
+                        <!-- <img src="./images/dataNotAvailable.jpg" class="data-not-available" alt="Data-Not-Available" > -->
+					</div>
+				</li>
+
+                <!-- Daily Summary View -->
+				<li class="collection-item summaryPlots">
+					<div class="plotSections" id="dailyPlostSection">
+						<h5>Daily Summary</h5>&emsp;
+						<div class="date-picker">
+							<label for="my_date_picker">Date:     </label>
+							<input type="text" id="my_date_picker">
+						</div>
+						<div id="daily_datepicker_inline">
+							<!-- <div class="date-time-picker">
+								<label for="my_date_picker">Date:     </label>
+								<input type="text" id="my_date_picker">
+							</div> -->
+							<div class="date-time-picker">
+								<label for="dailyStartTime">Start:     </label>
+								<input type="text" class="timepicker" name="starttimepicker" placeholder="Start" id="dailyStartTime">
+							</div>
+							<div class="date-time-picker">
+								<label for="dailyEndTime">End:    </label>
+								<input type="text" class="timepicker" name="endtimepicker" placeholder="End" id="dailyEndTime">
+							</div>
+						</div>
+                        <p class="no-data-in-select-time-range">No Data In Selected Date & Time Range, Please Re-Select!</p>
+						<div id="dailyPlotSeparate">
+							<div id="dailyPlot_bpm_section">
+								<h6 class="daily-plots-title">Heart Rate (BPM)</h6>
+                                <canvas id="dailyPlot_bpm"></canvas>
+                                <!-- <p class="no-data-in-select-time-range"></p> -->
+                                <!-- <img src="./images/dataNotAvailable.jpg" class="data-not-available" alt="Data-Not-Available" > -->
+							</div>
+							<div id="dailyPlot_satOxygen_section">
+								<h6 class="daily-plots-title">Blood Oxygen Saturation Level</h6>
+                                <canvas id="dailyPlot_satOxygen"></canvas>
+                                <!-- <p class="no-data-in-select-time-range"></p> -->
+                                <!-- <img src="./images/dataNotAvailable.jpg" class="data-not-available" alt="Data-Not-Available" > -->
+							</div>
+                        </div>
+                        
+					</div>
+                </li>
+            </ul>
+
+			<!-- <ul class="collection with-header" id="devices">
+				<li class="collection-header">
+					<h4>Devices</h4>
+				</li>
+				<li class="collection-item" id="addDeviceForm">
+					<label for="deviceId">New Device ID:</label>
+					<input type="text" id="deviceId" name="deviceId" col="30">
+					<button id="registerDevice" class="waves-effect waves-light btn">Register</button> 
+					<button id="cancel" class="waves-effect waves-light btn">Cancel</button> 
+				</li>
+				<li class="collection-item" id="addDeviceControl"><a href="#!" id="addDevice">Add Device</a></li>
+				<li class="collection-item" id="deleteDeviceControl"><a href="#!" id="deleteDevice">Delete Device</a></li>
+				<li class="collection-item" id="deleteDeviceForm">
+					<div id="deviceList"></div>
+					<button id="deleteDeviceBtn" class="waves-effect waves-light btn">Delete</button> 
+					<button id="cancelDelete" class="waves-effect waves-light btn">Cancel</button> 
+				</li>
+			</ul> -->
+
+			<!-- <div class='red-text text-darken-2' id="error"></div> -->
+
+			<!-- NEW -->
+			<!-- The Modal -->
+			<div id="myModal">
+				<!-- Modal content -->
+				<div class="modal-content">
+					<span class="close">&times;</span>
+					<br>
+					<div class="modal-dialog text-center">
+						<div class="input-field" id="updateFullNameForm">
+							<label for="fullName_form">Full Name</label>
+							<input type="text" id="fullName_form" name="fullName_form" >
+						</div>
+						
+
+						<a href="#!" id="updatePasswordLink">Update Password</a>
+						<div class="collection-item" id="updatePasswordForm">
+							<div class="input-field">
+								<label for="password">Password     
+									<i class="fas fa-check-circle password-passed"></i>
+									<i class="far fa-times-circle password-failed"></i>
+								</label>
+								<input type="password" id="password" name="password">
+								
+							</div>
+							<div id="passwordVerifictionErrors">
+								<ul>
+									<li id="passwordLengthPassed">- Password must be between 10 and 20 characters.</li>
+									<li id="passwordLowercasePassed">- Password must contain at least one lowercase character.</li>
+									<li id="passwordUppercasePassed">- Password must contain at least one uppercase character.</li>
+									<li id="passwordDigitPassed">- Password must contain at least one digit.</li>
+								</ul>
+							</div>
+							<div class="input-field">
+								<label for="passwordConfirm">Confirm Password     
+									<i class="fas fa-check-circle confirmPassword-passed"></i>
+									<i class="far fa-times-circle confirmPassword-failed"></i>
+								</label>
+								<input type="password" id="passwordConfirm" name="passwordConfirm" >
+							</div>
+							<div class="updateFormBtn_div">
+								<a class="waves-effect waves-light blue btn white-text" id="updatePasswordBtn">Update Password</a>
+								<a class="waves-effect waves-light blue btn white-text" id="cancelUpdatePasswordBtn">Cancel</a>
+							</div>
+							<!-- <div><a class="waves-effect waves-light blue btn white-text" id="cancelUpdatePasswordBtn">Cancel</a></div> -->
+						</div>
+						
+						
+						<div class="updateFormBtn_div"><a class="waves-effect waves-light blue btn white-text" id="updateFullNameBtn">Update Name</a></div>
+						<div class="card-panel blue-text" id="ServerResponse" style="display: none"></div>
+				
+					</div>
+				</div>
+			</div>
+			<!-- NEW -->
+
+		</div>
+	</div>
+
+	<!-- <button id="debug">debug</button> -->
+  </body>
+
+  <!-- Initialize dropdown menu in materialize -->
+  <script>
+    $(document).ready(function(){
+      $('.sidenav').sidenav({edge:'right'});
+   });
+  </script>
+
+<script>
+
+    function onLoad(){
+      gapi.load('auth2', function(){gapi.auth2.init()});
+    }
+  </script>
+  <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+</html>
