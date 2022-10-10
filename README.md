@@ -1,9 +1,5 @@
 University of Arizona
 Fall 2020 - ECE 513 Final Project
-Created By:
-- Ibrahim Almazyad
-- Amir Asdagh Pour
-- Vincent Xu
 
 
 
@@ -13,22 +9,7 @@ Project Description:
 /*********************************************************/
 
 
-/*********************************************************/
-Project Milestone Requirements:
-	1. Setup a web server that allows users to create accounts, register a HeartTrack device, and view basic data collected from the device.
-	2. Implement code for the IoT device that:
-		1) takes basic measurements for heart rate and blood oxygen saturation and
-		2) minimally uses a fixed schedule of asking the user every 30 minutes to take a measurement.
-/*********************************************************/
 
-
-/*********************  LINKS  **************************/
-Link to the server (Home-page):
-	Options:
-		1. http://ec2-18-217-151-193.us-east-2.compute.amazonaws.com:3000/
-		2. (Public IP Address) http://18.217.151.193:3000/
-Link to the Milestone Demo Video: https://www.youtube.com/watch?v=gYuMhayOKLY
-/*********************************************************/
 
 
 /*********************************************************/
