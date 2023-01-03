@@ -3,6 +3,7 @@ Fall 2020 - ECE 513 Final Project
 HeartTrackFull Stack Web Application for IoT Devices
 ### Written By: 
 Amir Asdaghpour
+
 Vincent Xu
 
 # Project Description:
